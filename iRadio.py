@@ -76,12 +76,12 @@ def getWlanIP():
 def bufferedMessage(msg):
   global lcd
   global lastMessage
-  print msg
   if lastMessage != msg:
     clear()
     lcd.message(msg)
     lastMessage = msg
     sleep(0.01)
+    print("yes:" + msg)
   else:
     print("no:" + msg)
   
