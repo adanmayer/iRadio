@@ -73,6 +73,7 @@ def getWlanIP():
 
 def bufferedMessage(msg):
   global lcd
+  global lastMessage
   print msg
   if lastMessage != msg:
     clear()
@@ -92,6 +93,7 @@ pressed = -1
 bufferedMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
 sleep(1)
 moveOutLeft()
+lastMessage = ""
 lastInfo = ["", ""]
 counter = 0
 
