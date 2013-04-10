@@ -131,11 +131,9 @@ while True:
       displayMessage("Play")
       os.system("mpc play")
       lastInfo = ['','']
-  else:
+  elif isplaying:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
-      if not isplaying:
-        displayMessage(stationInfo[0])
       if isplaying and stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
@@ -151,3 +149,6 @@ while True:
         displayMessage(message)
       #sleep
       lastInfo = stationInfo
+  else:
+    displayMessage(stationInfo[0])
+
