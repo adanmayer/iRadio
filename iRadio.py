@@ -154,7 +154,7 @@ while True:
           bufferedMessage(message)
         stationInfo[1] = ""
         sleep(1.5)
-      if stationInfo[1] != lastInfo[1]:
+      elif stationInfo[1] != lastInfo[1]:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
         bufferedMessage(message)
