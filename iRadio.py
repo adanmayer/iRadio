@@ -133,7 +133,7 @@ while True:
       elif stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
-	  displayMessage(centerLine('iRadio') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
+          displayMessage(centerLine('iRadio') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
         else:
           message = stationInfo[1][:16].strip() + '\n' + stationInfo[1][16:32].strip()
           displayMessage(message)
@@ -142,6 +142,6 @@ while True:
       elif stationInfo[1] != lastInfo[1]:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
-	displayMessage(message)
+        displayMessage(message)
       #sleep
       lastInfo = stationInfo
