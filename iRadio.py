@@ -61,7 +61,6 @@ def getRadioInfo():
     isplaying = True
     return [station, song]
   else:
-    isplaying = False
     return ["", ""]
 
 def getWlanIP():
@@ -117,8 +116,10 @@ while True:
     if pressed == lcd.LEFT:
       if isplaying:
         os.system("mpc stop")
+        isplaying = False
       else:
         os.system("mpc play")
+        isplaying = True
       lastInfo = ['-','-']
     elif pressed == lcd.UP:
       os.system("mpc next")
