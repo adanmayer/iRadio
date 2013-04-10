@@ -90,7 +90,7 @@ def bufferedMessage(msg):
 lcd = Adafruit_CharLCDPlate(0)
 isplaying = False
 lastMessage = ""
-lastInfo = ["", ""]
+lastInfo = ["-", "-"]
 counter = 0
 
 # Poll buttons, display message & set backlight accordingly
