@@ -20,13 +20,18 @@ def centerHighlight(msg):
   else:
     return msg
 
+def clear()
+  global lcd
+  lcd.clear()
+  sleep (0.01)
+
 def moveOutLeft():
   """ Animation, move text out to the left """
   for dx in range(1,MAXCHARS):
     dt = max(dx * dx * 2, 6)
     lcd.scrollDisplayLeft()
     sleep(max(1.0/dt, 0.01))
-  lcd.clear()
+  clear()
 
 def moveOutRight():
   """ Animation, move text out to the right """
@@ -34,7 +39,8 @@ def moveOutRight():
     dt = max(dx * dx * 2, 6)
     lcd.scrollDisplayRight()
     sleep(max(1.0/dt, 0.01))
-  lcd.clear()
+  clear()
+
 
 def getRadioInfo():
   """ Get station name and song title from radio stream """
@@ -69,9 +75,9 @@ def getWlanIP():
 def displayMessage(msg):
   global lcd
   print msg
-  lcd.clear()
-  sleep(0.01)
+  clear()
   lcd.message(msg)
+  sleep(0.01)
   
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
