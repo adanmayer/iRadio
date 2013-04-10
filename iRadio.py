@@ -58,7 +58,7 @@ def getRadioInfo():
   if matchObj:
     station = matchObj.group(1)
     song    = matchObj.group(2)
-    isplaying = (station.strip() != "")
+    isplaying = True
     return [station, song]
   else:
     isplaying = False
