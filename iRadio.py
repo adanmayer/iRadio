@@ -141,7 +141,7 @@ while True:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
       if not isplaying:
-        lastMessage = ""
+        lastMessage = "-"
         bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
       elif stationInfo[0] != lastInfo[0]:
         # station change 
@@ -156,5 +156,5 @@ while True:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
         bufferedMessage(message)
-      #sleep
-      lastInfo = stationInfo
+    #sleep
+    lastInfo = stationInfo
