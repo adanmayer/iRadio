@@ -60,9 +60,8 @@ def getRadioInfo():
     isplaying = True
     return [station, song]
   else:
-    station = centerLine('iRadio') + "\n" + centerHighlight('PAUSED')
     isplaying = False
-    return [station, station]
+    return ["", ""]
 
 def getWlanIP():
   """ get network IP from wlan0 """
@@ -150,5 +149,4 @@ while True:
       #sleep
       lastInfo = stationInfo
   else:
-    displayMessage(stationInfo[0])
-
+    displayMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
