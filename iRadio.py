@@ -82,7 +82,8 @@ def bufferedMessage(msg):
     lcd.message(msg)
     lastMessage = msg
     sleep(0.01)
-
+  else:
+    print("no:" + msg)
   
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
