@@ -60,7 +60,7 @@ def getRadioInfo():
     isplaying = True
     return [station, song]
   else:
-    station = centerLine('iRadio') + '\n' + centerHighlight('PAUSED')
+    station = centerLine('iRadio') + "\n" + centerHighlight('PAUSED')
     isplaying = False
     return [station, station]
 
@@ -136,16 +136,16 @@ while True:
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
       if not isplaying:
         displayMessage(stationInfo[0])
-      elif stationInfo[0] != lastInfo[0]:
+      if isplaying and stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
-          displayMessage(centerLine('iRadio') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
+          displayMessage(centerLine('iRadio*') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
         else:
-          message = stationInfo[1][:16].strip() + '\n' + stationInfo[1][16:32].strip()
+          message = stationInfo[1][:16].lstrip() + '\n' + stationInfo[1][16:32].lstrip()
           displayMessage(message)
         stationInfo[1] = ""
         sleep(1.5)
-      elif stationInfo[1] != lastInfo[1]:
+      if isplaying and stationInfo[1] != lastInfo[1]:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
         displayMessage(message)
