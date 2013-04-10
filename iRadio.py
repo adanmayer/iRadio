@@ -86,6 +86,9 @@ def bufferedMessage(msg):
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
 lcd = Adafruit_CharLCDPlate(0)
 isplaying = False
+lastMessage = ""
+lastInfo = ["", ""]
+counter = 0
 
 # Poll buttons, display message & set backlight accordingly
 btn = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
@@ -93,9 +96,6 @@ pressed = -1
 bufferedMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
 sleep(1)
 moveOutLeft()
-lastMessage = ""
-lastInfo = ["", ""]
-counter = 0
 
 while True:
   sleep(0.05)
