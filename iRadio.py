@@ -141,7 +141,7 @@ while True:
   else:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
-      if not isplaying:
+      if not isplaying or stationInfo[0] == "":
         lastMessage = "-"
         lcd.message(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
       elif stationInfo[0] != lastInfo[0]:
