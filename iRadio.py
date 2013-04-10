@@ -153,6 +153,6 @@ while True:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
         bufferedMessage(message)
-    #sleep
-    lastInfo = stationInfo
-    lastplaying = isplaying
+      #sleep
+      lastInfo = stationInfo
+      lastplaying = isplaying
