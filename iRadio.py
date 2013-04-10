@@ -22,7 +22,9 @@ def centerHighlight(msg):
 
 def clear():
   global lcd
+  global lastMessage
   lcd.clear()
+  lastMessage = ""
   sleep (0.01)
 
 def moveOutLeft():
@@ -135,10 +137,12 @@ while True:
       bufferedMessage("Play")
       os.system("mpc play")
       lastInfo = ['','']
-  elif isplaying:
+  else isplaying:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
-      if isplaying and stationInfo[0] != lastInfo[0]:
+      if not isplaying:
+        bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
+      elif stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
           bufferedMessage(centerLine('iRadio*') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
@@ -147,11 +151,9 @@ while True:
           bufferedMessage(message)
         stationInfo[1] = ""
         sleep(1.5)
-      if isplaying and stationInfo[1] != lastInfo[1]:
+      if stationInfo[1] != lastInfo[1]:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
         bufferedMessage(message)
       #sleep
       lastInfo = stationInfo
-  else:
-    bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
