@@ -122,16 +122,18 @@ while True:
       lastInfo = ['-','-']
     elif pressed == lcd.UP:
       os.system("mpc next")
+      sleep(0.1)
       os.system("mpc play")
       moveOutRight()
       lastInfo = ['-','-']
     elif pressed == lcd.DOWN:
       os.system("mpc prev")
+      sleep(0.1)
       os.system("mpc play")
       moveOutLeft()
       lastInfo = ['-','-']
     elif pressed == lcd.RIGHT:
-      bufferedMessage("Play")
+      # bufferedMessage("Play")
       os.system("mpc play")
       lastInfo = ['-','-']
   else:
