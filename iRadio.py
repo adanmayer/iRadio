@@ -141,6 +141,7 @@ while True:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
       if not isplaying:
+        lastMessage = ""
         bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
       elif stationInfo[0] != lastInfo[0]:
         # station change 
