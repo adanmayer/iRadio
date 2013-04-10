@@ -104,7 +104,7 @@ while True:
   sleep(0.05)
   counter += 1
   if isplaying and (counter % 100 == 0):
-    lastInfo = ["", ""]
+    lastInfo = ["-", "-"]
 
   if pressed == -1:
     prev = -1
@@ -143,7 +143,7 @@ while True:
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
       if not isplaying:
         lastMessage = "-"
-        bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
+        lcd.message(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
       elif stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
