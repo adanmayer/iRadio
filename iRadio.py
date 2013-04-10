@@ -116,25 +116,24 @@ while True:
       sleep(2)
     if pressed == lcd.LEFT:
       if isplaying:
-        bufferedMessage("Stop")
         os.system("mpc stop")
       else:
-        bufferedMessage("Play")
         os.system("mpc play")
+      lastInfo = ['-','-']
     elif pressed == lcd.UP:
       os.system("mpc next")
       os.system("mpc play")
       moveOutRight()
-      lastInfo = ['','']
+      lastInfo = ['-','-']
     elif pressed == lcd.DOWN:
       os.system("mpc prev")
       os.system("mpc play")
       moveOutLeft()
-      lastInfo = ['','']
+      lastInfo = ['-','-']
     elif pressed == lcd.RIGHT:
       bufferedMessage("Play")
       os.system("mpc play")
-      lastInfo = ['','']
+      lastInfo = ['-','-']
   else:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
@@ -144,7 +143,7 @@ while True:
       elif stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
-          bufferedMessage(centerLine('iRadio*') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
+          bufferedMessage(centerLine('iRadio') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
         else:
           message = stationInfo[1][:16].lstrip() + '\n' + stationInfo[1][16:32].lstrip()
           bufferedMessage(message)
