@@ -20,7 +20,7 @@ def centerHighlight(msg):
   else:
     return msg
 
-def clear()
+def clear():
   global lcd
   lcd.clear()
   sleep (0.01)
