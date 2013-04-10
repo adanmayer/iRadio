@@ -81,6 +81,7 @@ def bufferedMessage(msg):
     lcd.message(msg)
     lastMessage = msg
     sleep(0.01)
+    ss
     print("yes:" + msg)
   else:
     print("no:" + msg)
@@ -96,7 +97,7 @@ counter = 0
 # Poll buttons, display message & set backlight accordingly
 btn = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
 pressed = -1
-bufferedMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
+#bufferedMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
 sleep(1)
 moveOutLeft()
 
