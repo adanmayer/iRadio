@@ -71,12 +71,15 @@ def getWlanIP():
     string += line
   return string
 
-def displayMessage(msg):
+def bufferedMessage(msg):
   global lcd
   print msg
-  clear()
-  lcd.message(msg)
-  sleep(0.01)
+  if lastMessage != msg:
+    clear()
+    lcd.message(msg)
+    lastMessage = msg
+    sleep(0.01)
+
   
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
@@ -86,7 +89,7 @@ isplaying = False
 # Poll buttons, display message & set backlight accordingly
 btn = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
 pressed = -1
-displayMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
+bufferedMessage(centerLine("iRadio by Dave") + '\n' + centerLine("Have a nice Day"))
 sleep(1)
 moveOutLeft()
 lastInfo = ["", ""]
@@ -107,14 +110,14 @@ while True:
   if pressed is not prev:
     prev = pressed
     if pressed == lcd.SELECT:
-      displayMessage(centerLine('my IP is') + '\n' + centerLine(getWlanIP()))
+      bufferedMessage(centerLine('my IP is') + '\n' + centerLine(getWlanIP()))
       sleep(2)
     if pressed == lcd.LEFT:
       if isplaying:
-        displayMessage("Stop")
+        bufferedMessage("Stop")
         os.system("mpc stop")
       else:
-        displayMessage("Play")
+        bufferedMessage("Play")
         os.system("mpc play")
     elif pressed == lcd.UP:
       os.system("mpc next")
@@ -127,7 +130,7 @@ while True:
       moveOutLeft()
       lastInfo = ['','']
     elif pressed == lcd.RIGHT:
-      displayMessage("Play")
+      bufferedMessage("Play")
       os.system("mpc play")
       lastInfo = ['','']
   elif isplaying:
@@ -136,17 +139,17 @@ while True:
       if isplaying and stationInfo[0] != lastInfo[0]:
         # station change 
         if len(stationInfo[0]) < 16:
-          displayMessage(centerLine('iRadio*') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
+          bufferedMessage(centerLine('iRadio*') + '\n' +  centerHighlight(stationInfo[0][:16].strip()))
         else:
           message = stationInfo[1][:16].lstrip() + '\n' + stationInfo[1][16:32].lstrip()
-          displayMessage(message)
+          bufferedMessage(message)
         stationInfo[1] = ""
         sleep(1.5)
       if isplaying and stationInfo[1] != lastInfo[1]:
         # song changed
         message = stationInfo[1][:16] + '\n' + stationInfo[1][16:32]
-        displayMessage(message)
+        bufferedMessage(message)
       #sleep
       lastInfo = stationInfo
   else:
-    displayMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
+    bufferedMessage(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
