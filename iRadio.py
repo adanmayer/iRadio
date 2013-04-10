@@ -84,10 +84,11 @@ def bufferedMessage(msg):
 # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
 # pass '0' for early 256 MB Model B boards or '1' for all later versions
 lcd = Adafruit_CharLCDPlate(0)
-isplaying = False
+isplaying   = False
+lastplaying = True
 lastMessage = ""
-lastInfo = ["-", "-"]
-counter = 0
+lastInfo    = ["-", "-"]
+counter     = 0
 
 # Poll buttons, display message & set backlight accordingly
 btn = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
@@ -135,7 +136,7 @@ while True:
       lastInfo = ['-','-']
   else:
     stationInfo = getRadioInfo()
-    if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
+    if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]) or (lastplaying != isplaying):
       if not isplaying or stationInfo[0] == "":
         lastMessage = "-"
         lcd.message(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
@@ -154,3 +155,4 @@ while True:
         bufferedMessage(message)
     #sleep
     lastInfo = stationInfo
+    lastplaying = isplaying
