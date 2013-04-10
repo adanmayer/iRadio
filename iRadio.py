@@ -43,7 +43,6 @@ def moveOutRight():
     sleep(max(1.0/dt, 0.01))
   clear()
 
-
 def getRadioInfo():
   """ Get station name and song title from radio stream """
   global isplaying
