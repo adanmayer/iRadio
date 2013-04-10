@@ -137,7 +137,7 @@ while True:
       bufferedMessage("Play")
       os.system("mpc play")
       lastInfo = ['','']
-  else isplaying:
+  else:
     stationInfo = getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]):
       if not isplaying:
