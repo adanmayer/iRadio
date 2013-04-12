@@ -11,7 +11,7 @@ class IRadio():
   # pass '0' for early 256 MB Model B boards or '1' for all later versions
   lcd          = Adafruit_CharLCDPlate(0)
   isplaying    = False
-  isdisplaying = TRUE
+  isdisplaying = True
   lastMessage  = ""
   BTNS         = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
 
@@ -24,7 +24,7 @@ class IRadio():
   def centerHighlight(self, msg):
     if len(msg) < (self.MAXCHARS - 4):
       newMsg = '< ' + msg + ' >'
-      return centerLine(newMsg, '-')
+      return self.centerLine(newMsg, '-')
     else:
       return msg
 
@@ -35,7 +35,7 @@ class IRadio():
 
   def moveOutLeft(self):
     """ Animation, move text out to the left """
-    for dx in range(1,MAXCHARS):
+    for dx in range(1,self.MAXCHARS):
       dt = max(dx * dx * 2, 6)
       self.lcd.scrollDisplayLeft()
       sleep(max(1.0/dt, 0.01))
@@ -43,7 +43,7 @@ class IRadio():
 
   def moveOutRight(self):
     """ Animation, move text out to the right """
-    for dx in range(1,MAXCHARS):
+    for dx in range(1,self.MAXCHARS):
       dt = max(dx * dx * 2, 6)
       self.lcd.scrollDisplayRight()
       sleep(max(1.0/dt, 0.01))
@@ -115,7 +115,7 @@ while True:
   if iRadio.isplaying and (counter % 200 == 0):
     lastInfo = ["-", "-"]
 
-  if iRadio.pressed == -1:
+  if pressed == -1:
     prev = -1
   pressed = -1
   for b in iRadio.BTNS:
@@ -123,8 +123,8 @@ while True:
       pressed = b
   if pressed is not prev:
     prev = pressed
-    if pressed == lcd.SELECT:
-      iRadio.bufferedMessage(iRadio.centerLine('my IP is') + '\n' + iRadio.centerLine(getWlanIP()))
+    if pressed == iRadio.lcd.SELECT:
+      iRadio.bufferedMessage(iRadio.centerLine('my IP is') + '\n' + iRadio.centerLine(iRadio.getWlanIP()))
       sleep(2)
     if pressed == iRadio.lcd.LEFT:
       iRadio.toggleStopPlay()
@@ -143,10 +143,9 @@ while True:
       lastInfo = ['-','-']
     elif pressed == iRadio.lcd.RIGHT:
       # bufferedMessage("Play")
-      os.system("mpc play")
-      lastInfo = ['-','-']
+      iRadio.toggleDisplay()
   else:
-    stationInfo = getRadioInfo()
+    stationInfo = iRadio.getRadioInfo()
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]) or (lastplaying != iRadio.isplaying):
       if not iRadio.isplaying or stationInfo[0] == "":
         iRadio.lastMessage = "-"
@@ -167,4 +166,4 @@ while True:
         iRadio.bufferedMessage(message)
       #sleep
       lastInfo = stationInfo
-      lastplaying = isplaying
+      lastplaying = iRadio.isplaying
