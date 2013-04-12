@@ -53,7 +53,7 @@ def getRadioInfo():
   for line in txt.readlines():
     string += line
   
-  matchObj = re.search ( r'(.*):(.*)', string, re.M|re.I)
+  matchObj = re.search (r'\s*(.*)\s*:\s*(.*)', txt, re.M|re.I)
 
   if matchObj:
     station = matchObj.group(1)
@@ -142,6 +142,7 @@ while True:
     if (stationInfo[0] != lastInfo[0]) or (stationInfo[1] != lastInfo[1]) or (lastplaying != isplaying):
       if not isplaying or stationInfo[0] == "":
         lastMessage = "-"
+        clear()
         lcd.message(centerLine('iRadio') + "\n" + centerHighlight('PAUSED'))
       elif stationInfo[0] != lastInfo[0]:
         # station change 
