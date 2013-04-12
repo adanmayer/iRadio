@@ -7,13 +7,13 @@ import re
 
 class IRadio():
   MAXCHARS = 16
-  BTNS = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
   # Initialize the LCD plate.  Should auto-detect correct I2C bus.  If not,
   # pass '0' for early 256 MB Model B boards or '1' for all later versions
   lcd          = Adafruit_CharLCDPlate(0)
   isplaying    = False
   isdisplaying = TRUE
   lastMessage  = ""
+  BTNS         = (lcd.LEFT,lcd.UP,lcd.DOWN,lcd.RIGHT,lcd.SELECT)
 
   def centerLine(self, msg, fillChar = ' '):
     if len(msg) < self.MAXCHARS - 1:
