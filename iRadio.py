@@ -84,18 +84,18 @@ class IRadio():
       sleep(0.01)
 
   def toggleDisplay(self):
-    if self.isdisplaying:
-      self.lcd.noDisplay()
-    else:
-      self.lcd.display()
     self.isdisplaying = not self.isdisplaying
+    if self.isdisplaying:
+      self.lcd.backlight(self.lcd.ON)
+    else:
+      self.lcd.display(self.lcd.OFF)
    
   def toggleStopPlay(self):
-    if self.isplaying:
-      os.system("mpc stop")
-    else:
-      os.system("mpc play")
     self.isplaying = not self.isplaying
+    if self.isplaying:
+      os.system("mpc play")
+    else:
+      os.system("mpc stop")
 
 iRadio = IRadio()
 iRadio.bufferedMessage(iRadio.centerLine("iRadio by Dave") + '\n' + iRadio.centerLine("Have a nice Day"))
