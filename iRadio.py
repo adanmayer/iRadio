@@ -88,7 +88,7 @@ class IRadio():
     if self.isdisplaying:
       self.lcd.backlight(self.lcd.ON)
     else:
-      self.lcd.display(self.lcd.OFF)
+      self.lcd.backlight(self.lcd.OFF)
    
   def toggleStopPlay(self):
     self.isplaying = not self.isplaying
